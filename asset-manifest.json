@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/yoguis/static/css/main.183e3575.chunk.css",
+    "main.js": "/yoguis/static/js/main.c7fcf2f0.chunk.js",
+    "main.js.map": "/yoguis/static/js/main.c7fcf2f0.chunk.js.map",
+    "runtime-main.js": "/yoguis/static/js/runtime-main.ec3927cf.js",
+    "runtime-main.js.map": "/yoguis/static/js/runtime-main.ec3927cf.js.map",
+    "static/css/2.31461e4f.chunk.css": "/yoguis/static/css/2.31461e4f.chunk.css",
+    "static/js/2.c47d404c.chunk.js": "/yoguis/static/js/2.c47d404c.chunk.js",
+    "static/js/2.c47d404c.chunk.js.map": "/yoguis/static/js/2.c47d404c.chunk.js.map",
+    "static/js/3.1516bdbf.chunk.js": "/yoguis/static/js/3.1516bdbf.chunk.js",
+    "static/js/3.1516bdbf.chunk.js.map": "/yoguis/static/js/3.1516bdbf.chunk.js.map",
+    "index.html": "/yoguis/index.html",
+    "static/css/2.31461e4f.chunk.css.map": "/yoguis/static/css/2.31461e4f.chunk.css.map",
+    "static/css/main.183e3575.chunk.css.map": "/yoguis/static/css/main.183e3575.chunk.css.map",
+    "static/js/2.c47d404c.chunk.js.LICENSE.txt": "/yoguis/static/js/2.c47d404c.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/yoguis/static/media/SEGA.47b4bfa9.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ec3927cf.js",
+    "static/css/2.31461e4f.chunk.css",
+    "static/js/2.c47d404c.chunk.js",
+    "static/css/main.183e3575.chunk.css",
+    "static/js/main.c7fcf2f0.chunk.js"
+  ]
+}
