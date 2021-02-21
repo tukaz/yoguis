@@ -1,81 +1,56 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
+import Header from '../components/Header';
+
 import "./App.css";
+import {setSearchField,requestYoguis} from '../actions';
 
-const App = () => {
-
-    const [yoguis,setYoguis] = useState([]);
-    const [searchfield,setSearchField] = useState('');
-
-    useEffect(() => {
-        console.log('use effect 1'); 
-        fetch("https://jsonplaceholder.typicode.com/users/")
-            .then(r => r.json())
-            .then(users => setYoguis(users))    
-    },[]);
-
-    useEffect(() => {
-        console.log('use effect 2'); 
-    },[searchfield]);
-
-    const onSearchChange = (event) => {
-        setSearchField(event.target.value);
+const mapStateToProps = state => (
+    {
+        searchField: state.searchYoguis.searchField,
+        yoguis: state.requestYoguis.yoguis,
+        isPending: state.requestYoguis.isPending,
+        error: state.requestYoguis.error,
     }
+)
 
-    const getFilteredYoguis = () => {
-        return yoguis.filter((yogui => {
-            return yogui.name.toLowerCase().includes(searchfield.toLowerCase());
-        }));
+const mapDispatchToProps = (dispatch) => (
+    { 
+        onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+        onRequestYoguis: () => dispatch(requestYoguis())
     }
+)
 
-    return !yoguis.length
-    ? <h1>Loading</h1>
-    : (
-        <div className="tc">
-            <h1 className="f1">Yoguis</h1>
-            <SearchBox searchChange={onSearchChange}/>
-            <Scroll>
-                <CardList yoguis={getFilteredYoguis()} />
-            </Scroll>   
-        </div>
-    )
-    // constructor(){
-    //     super();
-    //     this.state = {
-    //         yoguis: [],
-    //         searchfield: ''
-    //     }
-    // }
-
-    // componentDidMount() {
-    //     fetch("https://jsonplaceholder.typicode.com/users/")
-    //         .then(r => r.json())
-    //         .then(users => this.setState({yoguis:users}))
-    // }
+class App extends Component {
     
 
+    componentDidMount() {
+        this.props.onRequestYoguis();
+    }
 
-    // render(){
-    //     const {yoguis,searchfield} = this.state;
-    //     const filteredYoguis = yoguis.filter((yogui => {
-    //         return yogui.name.toLowerCase().includes(searchfield.toLowerCase());
-    //     }));
+    render(){
+        const {yoguis,searchField,onSearchChange,isPending} = this.props;
+        const filteredYoguis = yoguis.filter((yogui => {
+            return yogui.name.toLowerCase().includes(searchField.toLowerCase());
+        }));
+  
+        return isPending
+        ? <h1>Loading</h1>
+        : (
+            <div className="tc">
+                <Header />
+                <SearchBox searchChange={onSearchChange}/>
+                <Scroll>
+                    <CardList yoguis={filteredYoguis} />
+                </Scroll>   
+            </div>
+        )
 
-    //     return !yoguis.length
-    //     ? <h1>Loading</h1>
-    //     : (
-    //         <div className="tc">
-    //             <h1 className="f1">Yoguis</h1>
-    //             <SearchBox searchChange={this.onSearchChange}/>
-    //             <Scroll>
-    //                 <CardList yoguis={filteredYoguis} />
-    //             </Scroll>
-    //         </div>
-    //     )
-    // }
+    }
 
 }
 
-export default App
+export default connect(mapStateToProps,mapDispatchToProps)(App);

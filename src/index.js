@@ -1,14 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {createLogger} from 'redux-logger'
+import {createStore, applyMiddleware,combineReducers} from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import {searchYoguis,requestYoguis} from './reducers'
 import './index.css';
 import App from './containers/App'
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
 
+const logger = createLogger();
+const rootReducers = combineReducers({searchYoguis,requestYoguis});
+const store = createStore(rootReducers,applyMiddleware(thunkMiddleware,logger));
+
 ReactDOM.render(
-  <div>
+  <Provider store={store}>
     <App />
-  </div>,
+  </Provider>,
   document.getElementById('root')
 );
 
