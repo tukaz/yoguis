@@ -36,6 +36,7 @@ class App extends Component {
         const filteredYoguis = yoguis.filter((yogui => {
             return yogui.name.toLowerCase().includes(searchField.toLowerCase());
         }));
+        
   
         return isPending
         ? <h1>Loading</h1>
